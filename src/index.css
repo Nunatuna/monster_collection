@@ -1,0 +1,56 @@
+:root {
+  --bg: #0a0c08;
+  --bg-scratch: #0e120a;
+  --surface: #14180f;
+  --surface-raised: #1b2113;
+  --border: #2a331c;
+  --accent: #b6ff00;
+  --accent-dim: #7a9e1f;
+  --ink: #f3f6ec;
+  --ink-dim: #9aa38a;
+  --stamp: #ff4d2e;
+
+  --font-display: 'Archivo Black', sans-serif;
+  --font-label: 'Barlow Condensed', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  background-image:
+    linear-gradient(135deg, transparent 48%, rgba(182, 255, 0, 0.025) 49%, rgba(182, 255, 0, 0.025) 51%, transparent 52%),
+    linear-gradient(135deg, transparent 48%, rgba(182, 255, 0, 0.025) 49%, rgba(182, 255, 0, 0.025) 51%, transparent 52%);
+  background-size: 140px 140px, 140px 140px;
+  background-position: 0 0, 70px 70px;
+  color: var(--ink);
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
