@@ -6,5 +6,5 @@ import react from '@vitejs/plugin-react'
 // no matter what the repo is named.
 export default defineConfig({
   plugins: [react()],
-  base: './',
+  base: '/monster_collection/',
 })
