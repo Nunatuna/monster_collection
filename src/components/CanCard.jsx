@@ -3,16 +3,17 @@ import './CanCard.css'
 /**
  * One card for one can in the collection.
  * Shows a small cropped thumbnail by default; tapping the card
- * folds it open to reveal the full, uncropped photo so you can
- * check it against the real can. The collection itself is still
- * edited in src/data/cans.js, not through the UI.
+ * switches the same image to its full, uncropped proportions so
+ * you can check it against the real can. The card stays the same
+ * size on the grid — only the photo's crop changes. The collection
+ * itself is still edited in src/data/cans.js, not through the UI.
  *
  * Props:
  *  - name: string — the can's name (required)
  *  - flavor: string — optional subtitle/flavor note
  *  - image: string — path or url for the can photo
  *  - collected: boolean — whether you actually have this one
- *  - expanded: boolean — whether this card is currently folded open
+ *  - expanded: boolean — whether this card is showing the uncropped photo
  *  - onToggle: () => void — call when the card is tapped/activated
  */
 export default function CanCard({ name, flavor, image, collected, expanded, onToggle }) {
@@ -30,7 +31,7 @@ export default function CanCard({ name, flavor, image, collected, expanded, onTo
         }
       }}
     >
-      <div className="can-card__thumb">
+      <div className="can-card__photo">
         {image ? (
           <img src={image} alt={name} loading="lazy" />
         ) : (
@@ -44,19 +45,6 @@ export default function CanCard({ name, flavor, image, collected, expanded, onTo
       <div className="can-card__body">
         <h3 className="can-card__name">{name}</h3>
         {flavor && <p className="can-card__flavor">{flavor}</p>}
-      </div>
-
-      {/* Folds open on tap. Uses a 0fr -> 1fr grid-rows transition so it
-          animates smoothly without knowing the image's real height. */}
-      <div className="can-card__expand">
-        <div className="can-card__expand-inner">
-          {image && (
-            <div className="can-card__full-photo">
-              <img src={image} alt={`${name}, full size`} loading="lazy" />
-            </div>
-          )}
-          <p className="can-card__hint">Tap to close</p>
-        </div>
       </div>
     </div>
   )
