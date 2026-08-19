@@ -5,6 +5,7 @@ import './App.css'
 
 export default function App() {
   const [filter, setFilter] = useState('all') // all | collected | missing
+  const [expandedId, setExpandedId] = useState(null)
 
   const collectedCount = cans.filter((c) => c.collected).length
 
@@ -13,6 +14,10 @@ export default function App() {
     if (filter === 'missing') return cans.filter((c) => !c.collected)
     return cans
   }, [filter])
+
+  function handleToggle(id) {
+    setExpandedId((current) => (current === id ? null : id))
+  }
 
   return (
     <div className="app">
@@ -38,7 +43,10 @@ export default function App() {
             role="tab"
             aria-selected={filter === f.key}
             className={`app__filter ${filter === f.key ? 'is-active' : ''}`}
-            onClick={() => setFilter(f.key)}
+            onClick={() => {
+              setFilter(f.key)
+              setExpandedId(null)
+            }}
           >
             {f.label}
           </button>
@@ -58,6 +66,8 @@ export default function App() {
               flavor={can.flavor}
               image={can.image}
               collected={can.collected}
+              expanded={expandedId === can.id}
+              onToggle={() => handleToggle(can.id)}
             />
           ))}
         </div>
